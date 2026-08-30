@@ -1,0 +1,9 @@
+Find out the work structure for all the different pages.
+
+Find out how to use css the same way
+
+Make the structure as alike as possible
+
+Use a nice component library
+
+Maybe make a codex/copilot instructions file 
