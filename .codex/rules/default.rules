@@ -1,0 +1,75 @@
+# Allow only the monorepo's existing non-deployment validation scripts.
+prefix_rule(
+    pattern = [["npm", "npm.cmd"], "run", "typecheck"],
+    decision = "allow",
+    justification = "Run the monorepo's existing frontend TypeScript check",
+    match = [
+        "npm run typecheck",
+        "npm.cmd run typecheck",
+    ],
+    not_match = [
+        "npm install",
+        "npm run test",
+        "npm run dev",
+    ],
+)
+
+prefix_rule(
+    pattern = [["npm", "npm.cmd"], "run", "lint"],
+    decision = "allow",
+    justification = "Run the monorepo's existing frontend lint check",
+    match = [
+        "npm run lint",
+        "npm.cmd run lint",
+    ],
+    not_match = [
+        "npm install",
+        "npm run test",
+        "npm run dev",
+    ],
+)
+
+prefix_rule(
+    pattern = [["npm", "npm.cmd"], "run", "test"],
+    decision = "allow",
+    justification = "Run the monorepo's existing frontend test suite once",
+    match = [
+        "npm run test",
+        "npm.cmd run test",
+    ],
+    not_match = [
+        "npm install",
+        "npm run test:watch",
+        "npm run dev",
+    ],
+)
+
+prefix_rule(
+    pattern = [["npm", "npm.cmd"], "run", "build"],
+    decision = "allow",
+    justification = "Run the monorepo's existing frontend production build",
+    match = [
+        "npm run build",
+        "npm.cmd run build",
+    ],
+    not_match = [
+        "npm install",
+        "npm run test",
+        "npm run dev",
+    ],
+)
+
+prefix_rule(
+    pattern = [["npm", "npm.cmd"], "run", "validate:commit"],
+    decision = "allow",
+    justification = "Run the monorepo's typecheck, lint, and test commit gate",
+    match = [
+        "npm run validate:commit",
+        "npm.cmd run validate:commit",
+    ],
+    not_match = [
+        "npm install",
+        "npm run setup:hooks",
+        "git commit",
+    ],
+)
